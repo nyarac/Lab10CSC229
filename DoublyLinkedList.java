@@ -123,13 +123,19 @@ public class DoublyLinkedList {
    //space is O(1) and time is O(n)
    public int getSum(int m) {
        //use code from reverse list, start at tail and create a counter to keep track of < m
-       int counter = 0; 
-       Node last = tail;
-       int sum = 0;
-       for (int i = m; i <= last.data; i++) {
-           sum += i;
-           counter += 1;
-       }
-       return sum;
-   }
+      Node current = head;
+      while (current != null) { //reverses list 
+      Node temp = current.next;
+      current.next=current.previous;
+      current.previous=temp;
+      current = current.previous;
 }
+      int sum = 0;
+    while (current != null) {
+        for (int i = 0; i <= m; i++)
+        sum += current.data;
+         current = current.next;
+    }
+    return sum;
+}
+   }
